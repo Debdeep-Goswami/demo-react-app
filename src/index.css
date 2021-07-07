@@ -1,4 +1,4 @@
-body {
+nobody {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -7,7 +7,62 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+*{
+  background-color: rgb(150, 195, 236);
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.name{
+  color: red;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+button{
+  cursor: pointer;
+  padding:12px 20px;
+  background:darkblue;
+  color:darkgrey;
+  outline:none;
+}
+
+.hooksExample{
+  text-align: center;
+}
+.eventExample{
+  text-align: center;
+  padding:20% 20%;
+}
+
+input{
+  width: 25%;
+  padding: 10px 20px;
+  margin: 20px 0;
+  text-align: center;
+  background: burlywood;
+}
+
+a{
+  color: #61dafb;
+  text-decoration: none;
+}
+a.active_class{
+  color:#ffffff;
+  font-size: 35px;
+}
+.menu_style{
+  line-height: 80px;
+  width: 100%;
+  display: inline-block;
+  background-color: #20232a;
+}
+
+.menu_item{
+  margin: 20px 20px;
+  padding: 20px 20px;
+  background-color:#20232a; 
+  font-size: 25px;
+}
+
