@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect,useRef} from 'react'
 import { useParams, useLocation, useHistory } from 'react-router'
 import axios from 'axios'
 import DisplayStudent from './DisplayStudent';
@@ -14,7 +14,18 @@ export default function Student() {
     const [state, setstate] = useState([]);
 
     var [page,setpage]=useState(1);
-    //var page = 1;
+    
+    const previousPage=usePrevious(page);
+
+    function usePrevious(value) {
+        const ref = useRef();
+        // Store current value in ref
+        useEffect(() => {
+          ref.current = value;
+        }, [value]); // Only re-run if value changes
+        // Return previous value (happens before update in useEffect above)
+        return ref.current;
+      }
 
     var offSet = 5;
     
@@ -108,7 +119,10 @@ export default function Student() {
                 fetchData()
                 }
             }>Previous Page</button>
-            {page}
+            <br/>
+            Current Page = {page}
+            <br/>
+            Previous Page = {previousPage}
             {state.map(function(val){
             return(
             <>
