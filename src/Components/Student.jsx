@@ -1,8 +1,8 @@
-import React, {useState,useEffect,useRef} from 'react'
+import React, {useState,useEffect} from 'react'
 import { useParams, useLocation, useHistory } from 'react-router'
 import axios from 'axios'
 import DisplayStudent from './DisplayStudent';
-import FetchPageData from './FetchPageData'
+import FetchPageData from './FetchPageData';
 
 export default function Student() {
     const {id}=useParams();
@@ -11,36 +11,37 @@ export default function Student() {
 
     const path="/student/".concat(id);
 
-    const [state, setstate] = useState([]);
+    const [state, setstate] = useState([]);         //  To control the data fetched from api call
 
-    var [page,setpage]=useState(1);
+    var [page,setpage]=useState(0);                 //  To control the page number
+
+    var [showButton, setshowbutton]= useState(0);   //  To control showButton's Behavior
+
+
+    var message="The value of current Page ";
+        
+
+    var button1="Show Data from First Page";
+    var button2="Next Pagee";
+    var button3="Previous Page";
     
-    const previousPage=usePrevious(page);
-
-    function usePrevious(value) {
-        const ref = useRef();
-        // Store current value in ref
-        useEffect(() => {
-          ref.current = value;
-        }, [value]); // Only re-run if value changes
-        // Return previous value (happens before update in useEffect above)
-        return ref.current;
-      }
-
+    useEffect(()=>{
+        fetchData();
+    });
+    
     var offSet = 5;
     
 
     function resetPage(){
+        setshowbutton(1);
         setpage(1);
     }
 
     function setNextPage(){
-        alert("Next page clicked");
         setpage(prevpage=>prevpage+1);
     }
 
     function setPreviousPage(){
-        alert("Previous page clicked");
         setpage(prevpage=>prevpage-1);
     }
 
@@ -49,7 +50,6 @@ export default function Student() {
         //const url="https://api.github.com/users";
         const url="http://localhost:8080/api/student/";
         //const url = `http://localhost:8080/api/student/${id}`
-        
         const response = await fetch(
             url,
             {
@@ -65,7 +65,10 @@ export default function Student() {
             }
         );
         const data=await response.json();
-        setstate(data);
+        if(showButton===1)
+            setstate(data);
+        else
+            setstate([]);
     }
 
     
@@ -107,23 +110,37 @@ export default function Student() {
                 resetPage()
                 fetchData()
                 }
-            }>Show Names</button>
+            }>{button1}</button>
             <button onClick={()=>{
                 setNextPage()
                 fetchData()
                 }
-            }>Next Page</button>
+            }>{button2}</button>
 
             <button onClick={()=>{
                 setPreviousPage()
                 fetchData()
                 }
-            }>Previous Page</button>
+            }>{button3}</button>
             <br/>
-            Current Page = {page}
+            <h3>{message} = {page}</h3>
             <br/>
-            Previous Page = {previousPage}
-            {state.map(function(val){
+            <FetchPageData
+                state={state}
+            />
+            </>
+        }           
+        </div>
+    )
+}
+
+/*
+<FetchPageData
+                state={state}
+            />
+
+
+{state.map(function(val){
             return(
             <>
                 <DisplayStudent
@@ -136,15 +153,4 @@ export default function Student() {
             }
             )
             }
-           
-            </>
-        }           
-        </div>
-    )
-}
-
-/*
-<FetchPageData
-                state={state}
-            />
 */
