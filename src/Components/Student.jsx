@@ -142,21 +142,6 @@ export default function Student() {
         </div>
     )
 }
-/*
-{state.map(function(val){
-            return(
-            <>
-                <DisplayStudent
-                    key={val.id}
-                    firstName={val.first_name}
-                    lastName={val.last_name}
-                /> 
-            </>
-            );
-            }
-            )
-            }
-*/
 
 /*
 <FetchPageData
