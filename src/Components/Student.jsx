@@ -15,6 +15,16 @@ export default function Student() {
     var page=1;
     var offSet=5;
     
+
+
+    function nextPage(){
+        alert("Next page clicked");
+    }
+
+    function previousPage(){
+        alert("Previous page clicked");
+    }
+
     // Using Fetch Function
     const fetchData = async () =>{
         //const url="https://api.github.com/users";
@@ -74,7 +84,9 @@ export default function Student() {
                 <button onClick={()=> history.goBack()}>Go Back</button>
             </>
             :<>
-            <button onClick={fetchData}>Show Names of all Students</button>
+            <button onClick={fetchData}>Show Names</button>
+            <button onClick={nextPage}>Next Page</button>
+            <button onClick={previousPage}>Previous Page</button>
             {state.map(function(val){
             return(
             <>
