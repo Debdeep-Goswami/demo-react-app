@@ -4,7 +4,7 @@ function DisplayStudent(props){
     return(
         <>
         <div>
-           <h2>{props.firstName} {props.lastName}</h2>
+            <h2>{props.firstName} {props.lastName}</h2>
         </div>
         </>
     );

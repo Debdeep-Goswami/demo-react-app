@@ -11,35 +11,50 @@ export default function Student() {
     const path="/student/".concat(id);
 
     const [state, setstate] = useState([]);
+
+    var page=1;
+    var offSet=5;
     
     // Using Fetch Function
     const fetchData = async () =>{
         //const url="https://api.github.com/users";
-        //const url="http://localhost:8080/api/student/";
-        const url = `http://localhost:8080/api/student/${id}`
+        const url="http://localhost:8080/api/student/";
+        //const url = `http://localhost:8080/api/student/${id}`
         
-        const response = await fetch(url);
+        const response = await fetch(
+            url,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "pageNumber": `${page}`,
+                    "offSet":`${offSet}`
+                }
+                )
+            }
+        );
         const data=await response.json();
-        console.log("Resp[onse",response);
-        
-        //console.log(data);
-        if(data!==null)
-            setstate(data);
-        else
-            alert(`No data found for id ${id}`);
+        setstate(data);
     }
 
     
     //  Using Axios function
     const fetchDataByAxios = async () =>{
         //const url="https://api.github.com/users";
-        const url="http://localhost:8080/api/student/";
-       //const url = `http://localhost:8080/api/student/${id}`
+        //const url="http://localhost:8080/api/student/";
+       const url = `http://localhost:8080/api/student/${id}`
 
         const response = await axios.get(url);
 
         //console.log(response.data);
-        setstate(response.data);
+        const data=response.data;
+
+        if(data!==null)
+            setstate(data);
+        else
+            alert(`No data found for id ${id}`);
 
     }
 
@@ -49,7 +64,7 @@ export default function Student() {
         {
             location.pathname === path
             ?<>
-                <button onClick={fetchData}>Show the name of student {id}</button>
+                <button onClick={fetchDataByAxios}>Show the name of student {id}</button>
                 <br/>
                 <DisplayStudent
                     key={state.id}
@@ -59,7 +74,7 @@ export default function Student() {
                 <button onClick={()=> history.goBack()}>Go Back</button>
             </>
             :<>
-            <button onClick={fetchDataByAxios}>Show Names of all Students</button>
+            <button onClick={fetchData}>Show Names of all Students</button>
             {state.map(function(val){
             return(
             <>
