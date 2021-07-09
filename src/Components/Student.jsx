@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { useParams, useLocation, useHistory } from 'react-router'
 import axios from 'axios'
 import DisplayStudent from './DisplayStudent';
+import FetchPageData from './FetchPageData'
 
 export default function Student() {
     const {id}=useParams();
@@ -12,17 +13,24 @@ export default function Student() {
 
     const [state, setstate] = useState([]);
 
-    var page=1;
-    var offSet=5;
+    var [page,setpage]=useState(1);
+    //var page = 1;
+
+    var offSet = 5;
     
 
-
-    function nextPage(){
-        alert("Next page clicked");
+    function resetPage(){
+        setpage(1);
     }
 
-    function previousPage(){
+    function setNextPage(){
+        alert("Next page clicked");
+        setpage(prevpage=>prevpage+1);
+    }
+
+    function setPreviousPage(){
         alert("Previous page clicked");
+        setpage(prevpage=>prevpage-1);
     }
 
     // Using Fetch Function
@@ -84,9 +92,23 @@ export default function Student() {
                 <button onClick={()=> history.goBack()}>Go Back</button>
             </>
             :<>
-            <button onClick={fetchData}>Show Names</button>
-            <button onClick={nextPage}>Next Page</button>
-            <button onClick={previousPage}>Previous Page</button>
+            <button onClick={()=>{
+                resetPage()
+                fetchData()
+                }
+            }>Show Names</button>
+            <button onClick={()=>{
+                setNextPage()
+                fetchData()
+                }
+            }>Next Page</button>
+
+            <button onClick={()=>{
+                setPreviousPage()
+                fetchData()
+                }
+            }>Previous Page</button>
+            {page}
             {state.map(function(val){
             return(
             <>
@@ -100,8 +122,30 @@ export default function Student() {
             }
             )
             }
+           
             </>
         }           
         </div>
     )
 }
+/*
+{state.map(function(val){
+            return(
+            <>
+                <DisplayStudent
+                    key={val.id}
+                    firstName={val.first_name}
+                    lastName={val.last_name}
+                /> 
+            </>
+            );
+            }
+            )
+            }
+*/
+
+/*
+<FetchPageData
+                state={state}
+            />
+*/
