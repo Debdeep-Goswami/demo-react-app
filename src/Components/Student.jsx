@@ -22,16 +22,15 @@ export default function Student() {
         
 
     var button1="Show Data from First Page";
-    var button2="Next Pagee";
+    var button2="Next Page";
     var button3="Previous Page";
     
     useEffect(()=>{
         fetchData();
     });
-    
+
     var offSet = 5;
     
-
     function resetPage(){
         setshowbutton(1);
         setpage(1);
@@ -106,23 +105,17 @@ export default function Student() {
                 <button onClick={()=> history.goBack()}>Go Back</button>
             </>
             :<>
-            <button onClick={()=>{
-                resetPage()
-                fetchData()
-                }
+            <button onClick={()=>{resetPage()}
             }>{button1}</button>
-            <button onClick={()=>{
-                setNextPage()
-                fetchData()
-                }
+
+            <button onClick={()=>{setNextPage()}
             }>{button2}</button>
 
-            <button onClick={()=>{
-                setPreviousPage()
-                fetchData()
-                }
+            <button onClick={()=>{setPreviousPage()}
             }>{button3}</button>
+
             <br/>
+            
             <h3>{message} = {page}</h3>
             <br/>
             <FetchPageData
