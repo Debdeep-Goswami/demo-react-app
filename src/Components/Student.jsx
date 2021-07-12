@@ -44,7 +44,8 @@ export default function Student() {
         setpage(prevpage=>prevpage-1);
     }
 
-    // Using Fetch Function
+    /*
+    // Using Fetch Function to create student
     const fetchData = async () =>{
         //const url="https://api.github.com/users";
         const url="http://localhost:8080/api/student/";
@@ -69,8 +70,27 @@ export default function Student() {
         else
             setstate([]);
     }
-
+    */
     
+    const fetchData = async () =>{
+        //const url="https://api.github.com/users";
+        //const url="http://localhost:8080/api/student/";
+        //const url = `http://localhost:8080/api/student/${id}`
+
+        const url=`http://localhost:8080/api/student?page=${page}&offset=${offSet}`;
+
+
+        const response = await fetch(url);
+        const data=await response.json();
+
+        if(showButton===1 && response.status===200)
+            setstate(data);
+        else
+            setstate([]);
+    }
+
+
+
     //  Using Axios function
     const fetchDataByAxios = async () =>{
         //const url="https://api.github.com/users";
@@ -113,6 +133,7 @@ export default function Student() {
 
             <button onClick={()=>{setPreviousPage()}
             }>{button3}</button>
+            
 
             <br/>
             
@@ -126,24 +147,3 @@ export default function Student() {
         </div>
     )
 }
-
-/*
-<FetchPageData
-                state={state}
-            />
-
-
-{state.map(function(val){
-            return(
-            <>
-                <DisplayStudent
-                    key={val.id}
-                    firstName={val.first_name}
-                    lastName={val.last_name}
-                /> 
-            </>
-            );
-            }
-            )
-            }
-*/

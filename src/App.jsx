@@ -12,11 +12,13 @@ import DigitalClock from "./Components/DigitalClock";
 import MyEvent from './Components/MyEvent'
 import HooksWithEvents from './Components/HooksWithEvents'
 import Student from './Components/Student'
+import CreateStudent from './Components/CreateStudent'
 
 //import Error from './Components/Error'
 
 import {Route,Switch,Redirect} from "react-router-dom"
 
+//<Route path="/student/:id" component={Student} exact/>
 
 
 function App(){
@@ -44,7 +46,7 @@ function App(){
 
         <Route path="/student" component={Student} exact/>
 
-        <Route path="/student/:id" component={Student} exact/>
+        <Route path="/student/create" component={CreateStudent} exact/>
         
         {/*<Route component={Error}/>*/}
 
