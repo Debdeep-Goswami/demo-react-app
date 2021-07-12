@@ -13,6 +13,7 @@ import MyEvent from './Components/MyEvent'
 import HooksWithEvents from './Components/HooksWithEvents'
 import Student from './Components/Student'
 import CreateStudent from './Components/CreateStudent'
+import DeleteStudent from './Components/DeleteStudent'
 
 //import Error from './Components/Error'
 
@@ -47,6 +48,8 @@ function App(){
         <Route path="/student" component={Student} exact/>
 
         <Route path="/student/create" component={CreateStudent} exact/>
+
+        <Route path="/student/delete" component={DeleteStudent} exact/>
         
         {/*<Route component={Error}/>*/}
 

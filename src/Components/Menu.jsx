@@ -13,7 +13,8 @@ export default function Menu() {
             <NavLink exact activeClassName="active_class" className="menu_item" to="/event">Event</NavLink>
             <NavLink exact activeClassName="active_class" className="menu_item" to="/hook">Hook</NavLink>
             <NavLink exact activeClassName="active_class" className="menu_item" to="/student">Student</NavLink>
-            <NavLink exact activeClassName="active_class" className="menu_item" to="/student/create">Create Student</NavLink>
+            <NavLink exact activeClassName="active_class" className="menu_item" to="/student/create">Create</NavLink>
+            <NavLink exact activeClassName="active_class" className="menu_item" to="/student/delete">Delete</NavLink>
         </div>
     )
 }

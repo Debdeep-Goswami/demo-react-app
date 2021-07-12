@@ -1,15 +1,10 @@
 import React,{useState} from 'react'
 export default function CreateStudent() {
     
-    var [id, setid] = useState("");
     var [firstName, setfirstName] = useState("");
     var [lastName, setlastName] = useState("");
 
 
-    const getId = (event) =>{
-        id=event.target.value;
-        setid(id);
-    }
     const getFirstName = (event) =>{
         firstName=event.target.value;
         setfirstName(firstName);
@@ -20,7 +15,7 @@ export default function CreateStudent() {
     }
     
     const validate = () =>{
-        if(id==="" || firstName==="" || lastName ==="")
+        if(firstName==="" || lastName ==="")
             alert("Please fill all the details");
         else
             addDetails();
@@ -37,7 +32,6 @@ export default function CreateStudent() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "id": `${id}`,
                     "firstName": `${firstName}`,
                     "lastName":`${lastName}`
                 }
@@ -55,9 +49,6 @@ export default function CreateStudent() {
 
     return (
         <div>
-            <label for="Id" >ID </label>
-            <input type="text" id="id" name="id" onChange={getId}/>
-            <br/>
             <label for="firstName" >First Name</label>
             <input type="text" id="firstName" name="firstName" onChange={getFirstName}/>
             <br/>
