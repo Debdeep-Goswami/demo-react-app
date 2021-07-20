@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 export default function DigitalClock() {
 
     let time=new Date().toLocaleTimeString();
@@ -12,7 +13,7 @@ export default function DigitalClock() {
     setInterval(UpdateTime,1000);
     return (
         <div style={{padding:'15%'}}className="hooksExample">
-            <h1>{currentTime}</h1>            
+            <h1>{currentTime}</h1>
         </div>
     )
 }

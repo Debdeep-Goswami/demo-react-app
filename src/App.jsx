@@ -14,6 +14,8 @@ import HooksWithEvents from './Components/HooksWithEvents'
 import Student from './Components/Student'
 import CreateStudent from './Components/CreateStudent'
 import DeleteStudent from './Components/DeleteStudent'
+import VideoStream from './Components/VideoStream'
+
 
 //import Error from './Components/Error'
 
@@ -50,6 +52,8 @@ function App(){
         <Route path="/student/create" component={CreateStudent} exact/>
 
         <Route path="/student/delete" component={DeleteStudent} exact/>
+
+        <Route path="/video" component={VideoStream} exact/>
         
         {/*<Route component={Error}/>*/}
 

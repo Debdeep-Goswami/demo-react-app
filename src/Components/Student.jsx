@@ -13,7 +13,7 @@ export default function Student() {
 
     const [state, setstate] = useState([]);         //  To control the data fetched from api call
 
-    var [page,setpage]=useState(0);                 //  To control the page number
+    var [page,setpage]=useState(1);                 //  To control the page number
 
     var [showButton, setshowbutton]= useState(0);   //  To control showButton's Behavior
 
@@ -37,40 +37,17 @@ export default function Student() {
     }
 
     function setNextPage(){
-        setpage(prevpage=>prevpage+1);
+        //setpage(prevpage=>prevpage+1);
+        setpage(page+1);
     }
 
     function setPreviousPage(){
-        setpage(prevpage=>prevpage-1);
-    }
-
-    /*
-    // Using Fetch Function to create student
-    const fetchData = async () =>{
-        //const url="https://api.github.com/users";
-        const url="http://localhost:8080/api/student/";
-        //const url = `http://localhost:8080/api/student/${id}`
-        const response = await fetch(
-            url,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    "pageNumber": `${page}`,
-                    "offSet":`${offSet}`
-                }
-                )
-            }
-        );
-        const data=await response.json();
-        if(showButton===1)
-            setstate(data);
+        if(page<2)
+            alert("Page cannot be negative");
         else
-            setstate([]);
+        setpage(page-1);
+        //setpage(prevpage=>prevpage-1);
     }
-    */
     
     const fetchData = async () =>{
         //const url="https://api.github.com/users";
